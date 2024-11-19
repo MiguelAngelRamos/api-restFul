@@ -3,16 +3,14 @@ package com.kibernumacademy.apirest.dto;
 import java.util.Collections;
 import java.util.List;
 
-import com.kibernumacademy.apirest.entity.Post;
-
 public class UserDTO {
 
   private Long id;
   private String name;
   private String email;
-  private List<Post> posts;
+  private List<PostDTO> posts;
 
-  public UserDTO(Long id, String name, String email, List<Post> posts) {
+  public UserDTO(Long id, String name, String email, List<PostDTO> posts) {
     this.id = id;
     this.name = name;
     this.email = email;
@@ -43,11 +41,11 @@ public class UserDTO {
     this.email = email;
   }
 
-  public List<Post> getPosts() {
+  public List<PostDTO> getPosts() {
     return posts;
   }
 
-  public void setPosts(List<Post> posts) {
+  public void setPosts(List<PostDTO> posts) {
     this.posts = posts;
   }
 

@@ -1,6 +1,10 @@
 package com.kibernumacademy.apirest.entity;
 
+import java.time.LocalDateTime;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -26,6 +30,12 @@ public class User {
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private List<Post> posts;
+
+  @CreationTimestamp
+  private LocalDateTime createAt;
+
+  @UpdateTimestamp
+  private LocalDateTime updateAt;
 
   public Long getId() {
     return id;
@@ -58,5 +68,23 @@ public class User {
   public void setPosts(List<Post> posts) {
     this.posts = posts;
   }
+
+  public LocalDateTime getCreateAt() {
+    return createAt;
+  }
+
+  public void setCreateAt(LocalDateTime createAt) {
+    this.createAt = createAt;
+  }
+
+  public LocalDateTime getUpdateAt() {
+    return updateAt;
+  }
+
+  public void setUpdateAt(LocalDateTime updateAt) {
+    this.updateAt = updateAt;
+  }
+
+  
 
 }

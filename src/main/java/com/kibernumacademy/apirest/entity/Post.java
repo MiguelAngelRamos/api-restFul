@@ -1,5 +1,10 @@
 package com.kibernumacademy.apirest.entity;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -25,6 +30,12 @@ public class Post {
   @ManyToOne(fetch = FetchType.EAGER) // Carga al usuario asociado al Post
   @JoinColumn(name = "user_id", nullable = false)
   private User user;
+
+  @CreationTimestamp
+  private LocalDateTime createAt;
+
+  @UpdateTimestamp
+  private LocalDateTime updateAt;
 
   public Long getId() {
     return id;
@@ -57,5 +68,23 @@ public class Post {
   public void setUser(User user) {
     this.user = user;
   }
+
+  public LocalDateTime getCreateAt() {
+    return createAt;
+  }
+
+  public void setCreateAt(LocalDateTime createAt) {
+    this.createAt = createAt;
+  }
+
+  public LocalDateTime getUpdateAt() {
+    return updateAt;
+  }
+
+  public void setUpdateAt(LocalDateTime updateAt) {
+    this.updateAt = updateAt;
+  }
+
+  
 
 }

@@ -20,6 +20,7 @@ public class User {
  
   @NotBlank(message= "Email is mandatory") 
   @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$", message = "Email should be valid")
+  @Size(max=255, message="Email must be less than 255 characteres")
   @Column(unique = true)
   private String email;
 

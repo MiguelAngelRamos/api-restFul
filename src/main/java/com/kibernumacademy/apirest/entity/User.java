@@ -3,6 +3,9 @@ package com.kibernumacademy.apirest.entity;
 import java.util.List;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class User {
@@ -11,7 +14,13 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @NotBlank(message = "Username is mandatory")
+  @Size(max=255, message = "Username must be less than 255 characters")
   private String username;
+ 
+  @NotBlank(message= "Email is mandatory") 
+  @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$", message = "Email should be valid")
+  @Column(unique = true)
   private String email;
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

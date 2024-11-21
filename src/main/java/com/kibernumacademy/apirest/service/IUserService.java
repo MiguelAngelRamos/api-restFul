@@ -11,6 +11,6 @@ public interface IUserService {
   UserDTO getUserById(Long id);
   List<UserDTO> getAllUsers();
   Optional<UserDTO> findByEmail(String email);
-  User updateUser(Long id, UserDTO userDetails);
+  User updateUser(Long id, User userDetails);
   void deleteUser(Long id);
 }

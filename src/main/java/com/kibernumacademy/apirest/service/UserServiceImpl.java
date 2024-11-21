@@ -24,6 +24,7 @@ public class UserServiceImpl implements IUserService {
 
   @Override
   public UserDTO saveUser(User user) {
+
     User savedUser = userRepository.save(user);
     return new UserDTO(savedUser.getId(), savedUser.getUsername(), savedUser.getEmail(), null);
   }
@@ -59,9 +60,9 @@ public class UserServiceImpl implements IUserService {
   }
 
   @Override
-  public User updateUser(Long id, UserDTO userDetails) {
+  public User updateUser(Long id, User userDetails) {
     User userDb = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con este id: " + id));
-    userDb.setUsername(userDetails.getName());
+    userDb.setUsername(userDetails.getUsername());
     userDb.setEmail(userDetails.getEmail());
     return userRepository.save(userDb);
   }

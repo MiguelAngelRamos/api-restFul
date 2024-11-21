@@ -23,13 +23,7 @@ public class UserServiceImpl implements IUserService {
   }
 
   @Override
-  public UserDTO saveUser(UserDTO userDto) {
-
-    User user = new User();
-    
-    user.setUsername(userDto.getName());
-    user.setEmail(userDto.getEmail());
-
+  public UserDTO saveUser(User user) {
     User savedUser = userRepository.save(user);
     return new UserDTO(savedUser.getId(), savedUser.getUsername(), savedUser.getEmail(), null);
   }

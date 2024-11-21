@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import com.kibernumacademy.apirest.dto.UserDTO;
+import com.kibernumacademy.apirest.entity.User;
 
 public interface IUserService {
-  UserDTO saveUser(UserDTO userDto);
+  UserDTO saveUser(User userDto);
   UserDTO getUserById(Long id);
   List<UserDTO> getAllUsers();
   Optional<UserDTO> findByEmail(String email);
-  UserDTO updateUser(Long id, UserDTO userDetails);
+  User updateUser(Long id, UserDTO userDetails);
   void deleteUser(Long id);
 }

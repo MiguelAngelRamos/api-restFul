@@ -39,16 +39,24 @@ public class UserServiceImpl implements IUserService {
 
     User user = userRepository.findById(id).orElseThrow( () -> new ResourceNotFoundException("Usuario no encontrado con ese id: " + id));
 
-    return new UserDTO(user.getId(), user.getUsername(), user.getEmail(),
+    return new UserDTO(
+                user.getId(), 
+                user.getUsername(), 
+                user.getEmail(),
                 user.getPosts().stream()
                         .map(post -> new PostDTO(post.getId(), post.getTitle(), post.getContent(), user.getId()))
-                        .collect(Collectors.toList()));
+                        .collect(Collectors.toList())
+                     );
   }
 
   @Override
   public List<UserDTO> getAllUsers() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getAllUsers'");
+    return userRepository.findAll().stream()
+    .map(user -> new UserDTO(user.getId(), user.getUsername(), user.getEmail(),
+            user.getPosts().stream()
+                    .map(post -> new PostDTO(post.getId(), post.getTitle(), post.getContent(), user.getId()))
+                    .collect(Collectors.toList())))
+    .collect(Collectors.toList());
   }
 
   @Override
@@ -57,15 +65,18 @@ public class UserServiceImpl implements IUserService {
   }
 
   @Override
-  public UserDTO updateUser(Long id, UserDTO userDetails) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'updateUser'");
+  public User updateUser(Long id, UserDTO userDetails) {
+    User userDb = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con este id: " + id));
+    userDb.setUsername(userDetails.getName());
+    userDb.setEmail(userDetails.getEmail());
+    return userRepository.save(userDb);
   }
 
   @Override
   public void deleteUser(Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'deleteUser'");
+    User userDb = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con este id: " + id));
+
+    userRepository.delete(userDb);
   }
   
 }

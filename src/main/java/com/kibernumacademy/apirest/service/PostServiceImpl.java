@@ -77,7 +77,11 @@ public class PostServiceImpl implements IPostService {
 
   @Override
   public void deletePost(Long id) {
-    
+    // Debes buscar el post por id que necesitas eliminar
+    Post post = postRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("post no encontrado con ese id: " + id));
+    // Llamas al metodo del CRUD REPOSITORY para eliminar
+    postRepository.delete(post);
+  
   }
   
 }

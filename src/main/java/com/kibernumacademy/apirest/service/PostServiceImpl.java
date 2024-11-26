@@ -59,14 +59,25 @@ public class PostServiceImpl implements IPostService {
 
   @Override
   public PostDTO updatePost(Long id, PostDTO postDTO) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'updatePost'");
+
+    Post postDB = postRepository.findById(id)
+                              .orElseThrow(() -> new ResourceNotFoundException("Post no encontrado con el id: " + id));
+
+    User userDB = userRepository.findById(postDTO.getUserId())
+                              .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontado con el id: " + postDTO.getUserId()));
+
+    postDB.setTitle(postDTO.getTitle());
+    postDB.setContent(postDTO.getContent());
+    postDB.setUser(userDB);
+
+    Post updatedPost = postRepository.save(postDB);
+    return new PostDTO(updatedPost.getId(), updatedPost.getTitle(), updatedPost.getContent(), updatedPost.getUser().getId());
+
   }
 
   @Override
   public void deletePost(Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'deletePost'");
+    
   }
   
 }

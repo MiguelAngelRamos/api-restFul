@@ -1,5 +1,7 @@
 package com.kibernumacademy.apirest.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,5 +35,13 @@ public class PostController {
     PostDTO postDTO = postService.getPostById(id);
     return ResponseEntity.ok(postDTO);
   }
+  //* GET http://localhost:8080/api/posts/user/1
+  @GetMapping("/user/{userId}")
+  public ResponseEntity<List<PostDTO>> getPostsByUserId(@PathVariable Long userId) {
+    List<PostDTO> posts = postService.getPostsByUserId(userId);
+    return ResponseEntity.ok(posts);
+  }
+
+  
   
 }

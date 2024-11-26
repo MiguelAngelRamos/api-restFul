@@ -1,6 +1,7 @@
 package com.kibernumacademy.apirest.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -42,16 +43,18 @@ public class PostServiceImpl implements IPostService {
     return new PostDTO(post.getId(), post.getTitle(), post.getContent(), post.getUser().getId());
   }
 
-  @Override
+  @Override //* select * from post; 
   public List<PostDTO> getAllPosts() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getAllPosts'");
+    return postRepository.findAll()
+                         .stream()
+                         .map(post -> new PostDTO(post.getId(), post.getTitle(), post.getContent(), post.getUser().getId()))
+                         .collect(Collectors.toList());
   }
 
   @Override
   public List<PostDTO> getPostsByUserId(Long userId) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getPostsByUserId'");
+    User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Usuario no encontado con el id: " + userId));
+    return postRepository.findByUser(user).stream().map(post -> new PostDTO(post.getId(), post.getTitle(), post.getContent(), post.getUser().getId())).collect(Collectors.toList());
   }
 
   @Override

@@ -83,5 +83,19 @@ public class PostServiceImpl implements IPostService {
     // Llamas al metodo del CRUD REPOSITORY para eliminar
     postRepository.delete(post);
   }
+
+  @Override
+  public PostDTO getPostByTitleUserId(String title, Long userId) {
+   return postRepository
+                        .findByTitleAndUserId(title, userId)
+                        .map(post -> new PostDTO(post.getId(), post.getTitle(), post.getContent(), post.getUser().getId()))
+                        .orElseThrow(() -> new ResourceNotFoundException("No se encontro un post con el titulo y usuario especificado"));
+  }
+
+  @Override
+  public long countPostsByUserId(Long userId) {
+    return postRepository.countByUserId(userId);
+  }
+  
   
 }

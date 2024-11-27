@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kibernumacademy.apirest.dto.PostDTO;
@@ -23,10 +24,6 @@ public class PostController {
 
   public PostController(IPostService postService) {
     this.postService = postService;
-  }
-
-  public PostController() {
-
   }
 
   @PostMapping
@@ -66,5 +63,12 @@ public class PostController {
     postService.deletePost(id);
     return ResponseEntity.noContent().build();
   }
+
+  @GetMapping("/search/{userId}")
+  public ResponseEntity<PostDTO> getPostByTitleAndUserId(@RequestParam String title, @PathVariable Long userId ) {
+    PostDTO post = postService.getPostByTitleUserId(title, userId);
+    return ResponseEntity.ok(post);
+  }
+
 
 }

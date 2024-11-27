@@ -11,4 +11,6 @@ public interface IPostService {
   List<PostDTO> getPostsByUserId(Long userId);
   PostDTO updatePost(Long id, PostDTO postDTO);
   void deletePost(Long id);
+  PostDTO getPostByTitleUserId(String title, Long userId);
+  long countPostsByUserId(Long userId);
 }

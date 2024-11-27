@@ -57,6 +57,7 @@ public class PostServiceImpl implements IPostService {
     return postRepository.findByUser(user).stream().map(post -> new PostDTO(post.getId(), post.getTitle(), post.getContent(), post.getUser().getId())).collect(Collectors.toList());
   }
 
+  //* Metodo que faltan
   @Override
   public PostDTO updatePost(Long id, PostDTO postDTO) {
 

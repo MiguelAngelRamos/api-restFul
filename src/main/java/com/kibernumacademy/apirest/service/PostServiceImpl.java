@@ -85,7 +85,7 @@ public class PostServiceImpl implements IPostService {
   }
 
   @Override
-  public PostDTO getPostByTitleUserId(String title, Long userId) {
+  public PostDTO getPostByTitleAndUserId(String title, Long userId) {
    return postRepository
                         .findByTitleAndUserId(title, userId)
                         .map(post -> new PostDTO(post.getId(), post.getTitle(), post.getContent(), post.getUser().getId()))
@@ -93,7 +93,7 @@ public class PostServiceImpl implements IPostService {
   }
 
   @Override
-  public long countPostsByUserId(Long userId) {
+  public long getCountPostsByUserId(Long userId) {
     return postRepository.countByUserId(userId);
   }
   

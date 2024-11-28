@@ -64,11 +64,18 @@ public class PostController {
     return ResponseEntity.noContent().build();
   }
 
+  //* http://localhost:8080/api/posts/search/1?title=Angular
   @GetMapping("/search/{userId}")
-  public ResponseEntity<PostDTO> getPostByTitleAndUserId(@RequestParam String title, @PathVariable Long userId ) {
-    PostDTO post = postService.getPostByTitleUserId(title, userId);
+  public ResponseEntity<PostDTO> getPostByTitleAndUserId(@PathVariable Long userId, @RequestParam String title ) {
+    PostDTO post = postService.getPostByTitleAndUserId(title, userId);
     return ResponseEntity.ok(post);
   }
 
+    //* http://localhost:8080/api/posts/count/1
+  @GetMapping("/count/{userId}")
+  public ResponseEntity<Long> getCountPostByUserId(@PathVariable Long userId) {
+    long countPosts = postService.getCountPostsByUserId(userId);
+    return ResponseEntity.ok(countPosts);
+  }
 
 }

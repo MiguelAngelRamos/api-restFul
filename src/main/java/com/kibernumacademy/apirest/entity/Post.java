@@ -10,6 +10,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
+// @Table(name="posts")
 public class Post {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

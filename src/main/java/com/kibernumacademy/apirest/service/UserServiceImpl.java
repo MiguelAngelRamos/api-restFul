@@ -73,5 +73,17 @@ public class UserServiceImpl implements IUserService {
 
     userRepository.delete(userDb);
   }
+
+  @Override
+  public Optional<User> getUserByEmail(String email) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getUserByEmail'");
+  }
+
+  @Override
+  public Optional<User> getUserByUsernameJPSQL(String username) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getUserByUsernameJPSQL'");
+  }
   
 }

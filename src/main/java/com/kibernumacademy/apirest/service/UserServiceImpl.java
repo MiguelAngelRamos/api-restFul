@@ -54,10 +54,6 @@ public class UserServiceImpl implements IUserService {
     .collect(Collectors.toList());
   }
 
-  @Override
-  public Optional<UserDTO> findByEmail(String email) {
-    return userRepository.findByEmail(email).map( user -> new UserDTO(user.getId(), user.getUsername(), user.getEmail(), null));
-  }
 
   @Override
   public User updateUser(Long id, User userDetails) {

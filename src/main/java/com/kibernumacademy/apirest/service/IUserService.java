@@ -10,7 +10,6 @@ public interface IUserService {
   UserDTO saveUser(User userDto);
   UserDTO getUserById(Long id);
   List<UserDTO> getAllUsers();
-  Optional<UserDTO> findByEmail(String email);
   User updateUser(Long id, User userDetails);
   void deleteUser(Long id);
   UserDTO getUserByEmail(String email);

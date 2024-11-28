@@ -75,15 +75,22 @@ public class UserServiceImpl implements IUserService {
   }
 
   @Override
-  public Optional<User> getUserByEmail(String email) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getUserByEmail'");
+  public UserDTO getUserByEmail(String email) {
+    return userRepository.findByEmail(email).
+      map(user -> new UserDTO(
+        user.getId(), 
+        user.getUsername(), 
+        user.getEmail(), 
+        user.getPosts()
+            .stream()
+            .map(post -> new PostDTO(post.getId(), post.getTitle(), post.getContent(), user.getId()))
+            .collect(Collectors.toList()) ))
+      .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con el email: " + email));
   }
 
   @Override
-  public Optional<User> getUserByUsernameJPSQL(String username) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getUserByUsernameJPSQL'");
+  public Optional<User> getUserByUsernameJPQL(String username) {
+    return userRepository.findByUsernameJPQL(username);
   }
   
 }

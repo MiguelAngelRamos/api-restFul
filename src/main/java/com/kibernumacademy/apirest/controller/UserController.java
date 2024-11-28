@@ -1,6 +1,7 @@
 package com.kibernumacademy.apirest.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -56,9 +57,16 @@ public class UserController {
     return ResponseEntity.noContent().build();
   }
 
+  @GetMapping("/by-email/{email}")
+  public ResponseEntity<UserDTO> getUserByEmail(@PathVariable String email) {
+    UserDTO user = userService.getUserByEmail(email);
+    return ResponseEntity.ok(user);
+  }
 
 
+  // @GetMapping()
+  // public ResponseEntity<User> getUserByUsernameJPQL() {
 
-
+  // }
 
 }

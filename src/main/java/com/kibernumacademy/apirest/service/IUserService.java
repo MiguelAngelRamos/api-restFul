@@ -13,6 +13,6 @@ public interface IUserService {
   Optional<UserDTO> findByEmail(String email);
   User updateUser(Long id, User userDetails);
   void deleteUser(Long id);
-  Optional<User> getUserByEmail(String email);
-  Optional<User> getUserByUsernameJPSQL(String username);
+  UserDTO getUserByEmail(String email);
+  Optional<User> getUserByUsernameJPQL(String username);
 }

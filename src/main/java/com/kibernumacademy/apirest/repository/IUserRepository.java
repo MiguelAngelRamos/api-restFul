@@ -15,8 +15,8 @@ public interface IUserRepository extends JpaRepository<User, Long> {
   Optional<User> findByEmail(String email);
 
   // JPQL "Pasa por el modelo User"
-  @Query("SELECT FROM User WHERE username = ?1")
-  Optional<User> findByUsernameJPSQL(String username);
+  @Query("SELECT u FROM User u WHERE u.username = ?1")
+  Optional<User> findByUsernameJPQL(String username);
 
   
 }

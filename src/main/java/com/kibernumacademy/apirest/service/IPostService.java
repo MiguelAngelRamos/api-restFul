@@ -2,6 +2,7 @@ package com.kibernumacademy.apirest.service;
 
 import java.util.List;
 
+import com.kibernumacademy.apirest.dto.PostCountResponseDTO;
 import com.kibernumacademy.apirest.dto.PostDTO;
 
 public interface IPostService {
@@ -12,5 +13,5 @@ public interface IPostService {
   PostDTO updatePost(Long id, PostDTO postDTO);
   void deletePost(Long id);
   PostDTO getPostByTitleAndUserId(String title, Long userId);
-  long getCountPostsByUserId(Long userId);
+  PostCountResponseDTO getCountPostsByUserId(Long userId);
 }

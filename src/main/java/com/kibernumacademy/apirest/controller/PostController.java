@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kibernumacademy.apirest.dto.PostCountResponseDTO;
 import com.kibernumacademy.apirest.dto.PostDTO;
 import com.kibernumacademy.apirest.service.IPostService;
 
@@ -73,9 +74,9 @@ public class PostController {
 
     //* http://localhost:8080/api/posts/count/1
   @GetMapping("/count/{userId}")
-  public ResponseEntity<Long> getCountPostByUserId(@PathVariable Long userId) {
-    long countPosts = postService.getCountPostsByUserId(userId);
-    return ResponseEntity.ok(countPosts);
+  public ResponseEntity<PostCountResponseDTO> getCountPostByUserId(@PathVariable Long userId) {
+    PostCountResponseDTO response = postService.getCountPostsByUserId(userId);
+    return ResponseEntity.ok(response);
   }
 
 }

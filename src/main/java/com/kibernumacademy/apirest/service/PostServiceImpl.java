@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.kibernumacademy.apirest.dto.PostCountResponseDTO;
 import com.kibernumacademy.apirest.dto.PostDTO;
 import com.kibernumacademy.apirest.entity.Post;
 import com.kibernumacademy.apirest.entity.User;
@@ -93,8 +94,10 @@ public class PostServiceImpl implements IPostService {
   }
 
   @Override
-  public long getCountPostsByUserId(Long userId) {
-    return postRepository.countByUserId(userId);
+  public PostCountResponseDTO getCountPostsByUserId(Long userId) {
+    long count = postRepository.countByUserId(userId);
+    return new PostCountResponseDTO(count);
+    // return postRepository.countByUserId(userId);
   }
   
   

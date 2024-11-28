@@ -88,5 +88,11 @@ public class UserServiceImpl implements IUserService {
   public Optional<User> getUserByUsernameJPQL(String username) {
     return userRepository.findByUsernameJPQL(username);
   }
+
+  @Override
+  public List<Object[]> getPostsByUser(Long userId) {
+    List<Object[]> results = userRepository.getPostsByUser(userId);
+    return results;
+  }
   
 }

@@ -69,4 +69,11 @@ public class UserController {
 
   // }
 
+  // Store Procedure
+  
+  @GetMapping("/{userId}/posts")
+  public ResponseEntity<List<Object[]>> getPostsByUser(@PathVariable Long userId) {
+    List<Object[]> posts = userService.getPostsByUser(userId);
+    return ResponseEntity.ok(posts);
+  }
 }

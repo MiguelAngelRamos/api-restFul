@@ -14,4 +14,6 @@ public interface IUserService {
   void deleteUser(Long id);
   UserDTO getUserByEmail(String email);
   Optional<User> getUserByUsernameJPQL(String username);
+  // Store procedure
+  List<Object[]> getPostsByUser(Long userId);
 }

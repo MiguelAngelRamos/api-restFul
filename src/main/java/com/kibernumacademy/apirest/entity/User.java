@@ -13,6 +13,15 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 // @Table(name="users")
+@NamedStoredProcedureQuery(
+  name = "GetUserActivitySummary",
+  procedureName= "GetUserActivitySummary",
+  parameters = {
+    @StoredProcedureParameter(mode= ParameterMode.IN, name = "p_user_id", type= Long.class),
+    @StoredProcedureParameter(mode= ParameterMode.OUT, name = "total_posts", type= Integer.class),
+    @StoredProcedureParameter(mode= ParameterMode.OUT, name = "last_post_title", type= String.class)
+  }
+  )
 public class User {
 
   @Id

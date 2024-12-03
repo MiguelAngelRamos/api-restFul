@@ -104,16 +104,7 @@ public class UserServiceImpl implements IUserService {
                 (String)result[4],
                 (String)result[5]
               )).collect(Collectors.toList());
-    // return results;
+  
   }
-  /*
-   * 
-   *   
-  private Long postId;
-  private String postTitle;
-  private String postContent;
-  private Long userId;
-  private String userName;
-  private String userEmail;
-   */
+ 
 }

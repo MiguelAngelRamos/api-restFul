@@ -18,6 +18,14 @@ public class PostUseDTO {
     this.userEmail = userEmail;
   }
 
+
+  public PostUseDTO(String postTitle, String postContent) {
+    this.postTitle = postTitle;
+    this.postContent = postContent;
+  }
+
+
+
   public Long getPostId() {
     return postId;
   }

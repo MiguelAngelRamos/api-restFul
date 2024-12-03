@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kibernumacademy.apirest.dto.PostUseDTO;
+import com.kibernumacademy.apirest.dto.UserActivitySummaryDTO;
 import com.kibernumacademy.apirest.dto.UserDTO;
 import com.kibernumacademy.apirest.entity.User;
 import com.kibernumacademy.apirest.service.IUserService;
@@ -76,5 +77,11 @@ public class UserController {
   public ResponseEntity<List<PostUseDTO>> getPostsByUser(@PathVariable Long userId) {
     List<PostUseDTO> posts = userService.getPostsByUser(userId);
     return ResponseEntity.ok(posts);
+  }
+
+  @GetMapping("/{id}/activity-summary")
+  public ResponseEntity<UserActivitySummaryDTO> getUserActivitySummary(@PathVariable Long id) {
+    UserActivitySummaryDTO summary = userService.getUserActivySummary(id);
+    return ResponseEntity.ok(summary);
   }
 }

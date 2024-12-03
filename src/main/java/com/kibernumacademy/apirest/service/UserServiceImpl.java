@@ -9,15 +9,24 @@ import org.springframework.stereotype.Service;
 
 import com.kibernumacademy.apirest.dto.PostDTO;
 import com.kibernumacademy.apirest.dto.PostUseDTO;
+import com.kibernumacademy.apirest.dto.UserActivitySummaryDTO;
 import com.kibernumacademy.apirest.dto.UserDTO;
 import com.kibernumacademy.apirest.entity.User;
 import com.kibernumacademy.apirest.exception.ResourceNotFoundException;
 import com.kibernumacademy.apirest.repository.IUserRepository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.ParameterMode;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.StoredProcedureQuery;
+
 @Service
 public class UserServiceImpl implements IUserService {
 
   private final IUserRepository userRepository;
+
+  @PersistenceContext
+  private EntityManager entityManager;
 
   public UserServiceImpl(IUserRepository userRepository) {
     this.userRepository = userRepository;
@@ -106,5 +115,22 @@ public class UserServiceImpl implements IUserService {
               )).collect(Collectors.toList());
   
   }
+
+  @Override
+  public UserActivitySummaryDTO getUserActivySummary(Long userId) {
+    StoredProcedureQuery query = entityManager.createStoredProcedureQuery("GetUserActivitySummary");
+    query.registerStoredProcedureParameter("p_user_id", Long.class, ParameterMode.IN);
+    query.registerStoredProcedureParameter("total_posts", Integer.class, ParameterMode.OUT);
+    query.registerStoredProcedureParameter("last_post_title", String.class, ParameterMode.OUT);
+
+    query.setParameter("p_user_id", userId);
+
+    Integer totalPosts = (Integer) query.getOutputParameterValue("total_posts");
+    String lastPostTitle = (String) query.getOutputParameterValue("last_post_title");
+
+    return new UserActivitySummaryDTO(totalPosts, lastPostTitle);
+  }
+
+  
  
 }

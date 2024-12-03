@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.kibernumacademy.apirest.dto.PostUseDTO;
+import com.kibernumacademy.apirest.dto.UserActivitySummaryDTO;
 import com.kibernumacademy.apirest.dto.UserDTO;
 import com.kibernumacademy.apirest.entity.User;
 
@@ -17,4 +18,5 @@ public interface IUserService {
   Optional<User> getUserByUsernameJPQL(String username);
   // Store procedure
   List<PostUseDTO> getPostsByUser(Long userId);
+  UserActivitySummaryDTO getUserActivySummary(Long userId);
 }

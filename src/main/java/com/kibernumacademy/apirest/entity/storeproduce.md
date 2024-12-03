@@ -22,3 +22,8 @@ BEGIN
 END$$
 DELIMITER ;
 ```
+
+```JAVA
+ StoredProcedureQuery query = entityManager.createStoredProcedureQuery("GetUserActivitySummary")
+
+```

@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.kibernumacademy.apirest.dto.PostUseDTO;
 import com.kibernumacademy.apirest.entity.User;
 
 

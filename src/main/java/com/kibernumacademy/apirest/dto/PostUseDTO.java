@@ -1,14 +1,15 @@
 package com.kibernumacademy.apirest.dto;
 
 public class PostUseDTO {
-  private Long postId;
-  private Long postTitle;
-  private Long postContent;
-  private Long userId;
-  private Long userName;
-  private Long userEmail;
 
-  public PostUseDTO(Long postId, Long postTitle, Long postContent, Long userId, Long userName, Long userEmail) {
+  private Long postId;
+  private String postTitle;
+  private String postContent;
+  private Long userId;
+  private String userName;
+  private String userEmail;
+
+  public PostUseDTO(Long postId, String postTitle, String postContent, Long userId, String userName, String userEmail) {
     this.postId = postId;
     this.postTitle = postTitle;
     this.postContent = postContent;
@@ -25,19 +26,19 @@ public class PostUseDTO {
     this.postId = postId;
   }
 
-  public Long getPostTitle() {
+  public String getPostTitle() {
     return postTitle;
   }
 
-  public void setPostTitle(Long postTitle) {
+  public void setPostTitle(String postTitle) {
     this.postTitle = postTitle;
   }
 
-  public Long getPostContent() {
+  public String getPostContent() {
     return postContent;
   }
 
-  public void setPostContent(Long postContent) {
+  public void setPostContent(String postContent) {
     this.postContent = postContent;
   }
 
@@ -49,22 +50,25 @@ public class PostUseDTO {
     this.userId = userId;
   }
 
-  public Long getUserName() {
+  public String getUserName() {
     return userName;
   }
 
-  public void setUserName(Long userName) {
+  public void setUserName(String userName) {
     this.userName = userName;
   }
 
-  public Long getUserEmail() {
+  public String getUserEmail() {
     return userEmail;
   }
 
-  public void setUserEmail(Long userEmail) {
+  public void setUserEmail(String userEmail) {
     this.userEmail = userEmail;
   }
 
+  
+
+  
   
   
 }

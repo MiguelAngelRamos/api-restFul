@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.kibernumacademy.apirest.dto.PostDTO;
+import com.kibernumacademy.apirest.dto.PostUseDTO;
 import com.kibernumacademy.apirest.dto.UserDTO;
 import com.kibernumacademy.apirest.entity.User;
 import com.kibernumacademy.apirest.exception.ResourceNotFoundException;
@@ -90,9 +91,29 @@ public class UserServiceImpl implements IUserService {
   }
 
   @Override
-  public List<Object[]> getPostsByUser(Long userId) {
+  public List<PostUseDTO> getPostsByUser(Long userId) {
+
     List<Object[]> results = userRepository.getPostsByUser(userId);
-    return results;
+
+    return results.stream()
+            .map(result -> new PostUseDTO(
+                ((Number)result[0]).longValue(), 
+                (String)result[1], 
+                (String)result[2], 
+                ((Number)result[3]).longValue(), 
+                (String)result[4],
+                (String)result[5]
+              )).collect(Collectors.toList());
+    // return results;
   }
-  
+  /*
+   * 
+   *   
+  private Long postId;
+  private String postTitle;
+  private String postContent;
+  private Long userId;
+  private String userName;
+  private String userEmail;
+   */
 }

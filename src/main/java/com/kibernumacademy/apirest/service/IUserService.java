@@ -3,6 +3,7 @@ package com.kibernumacademy.apirest.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.kibernumacademy.apirest.dto.PostUseDTO;
 import com.kibernumacademy.apirest.dto.UserDTO;
 import com.kibernumacademy.apirest.entity.User;
 
@@ -15,5 +16,5 @@ public interface IUserService {
   UserDTO getUserByEmail(String email);
   Optional<User> getUserByUsernameJPQL(String username);
   // Store procedure
-  List<Object[]> getPostsByUser(Long userId);
+  List<PostUseDTO> getPostsByUser(Long userId);
 }

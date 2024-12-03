@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kibernumacademy.apirest.dto.PostUseDTO;
 import com.kibernumacademy.apirest.dto.UserDTO;
 import com.kibernumacademy.apirest.entity.User;
 import com.kibernumacademy.apirest.service.IUserService;
@@ -72,8 +73,8 @@ public class UserController {
   // Store Procedure
   
   @GetMapping("/{userId}/posts")
-  public ResponseEntity<List<Object[]>> getPostsByUser(@PathVariable Long userId) {
-    List<Object[]> posts = userService.getPostsByUser(userId);
+  public ResponseEntity<List<PostUseDTO>> getPostsByUser(@PathVariable Long userId) {
+    List<PostUseDTO> posts = userService.getPostsByUser(userId);
     return ResponseEntity.ok(posts);
   }
 }
